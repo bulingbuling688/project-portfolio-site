@@ -45,7 +45,7 @@ describe("App", () => {
     );
     expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
-      "/covers/newapi-cpa-dashboard.png?v=20260708-restore",
+      "/covers/newapi-cpa-dashboard.png",
     );
     expect(screen.getByLabelText("项目 01封面预留位")).toBeInTheDocument();
   });
@@ -132,7 +132,7 @@ describe("App", () => {
     );
     expect(
       screen.getByText(
-        "跑通 AI API 中转站从模型接入、用户注册、令牌发放、额度充值、调用计费到持续复购的完整商业闭环，累计盈利 3w+",
+        "搭建统一的 OpenAI-compatible API 网关，支持客户端和自动化工具通过标准协议接入多模型服务",
       ),
     ).toBeInTheDocument();
     expect(
@@ -142,7 +142,7 @@ describe("App", () => {
     ).toBeInTheDocument();
     expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
-      "/covers/newapi-cpa-dashboard.png?v=20260708-restore",
+      "/covers/newapi-cpa-dashboard.png",
     );
   });
 
