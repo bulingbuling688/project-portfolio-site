@@ -23,6 +23,27 @@ export type Project = {
 
 export const SHOW_DRAFT_PROJECTS = true;
 
+const publishedProjects: Project[] = [
+  {
+    slug: "teanary-service",
+    title: "Teanary",
+    description: "面向中国茶品展示与演示管理的多语言茶文化电商站。",
+    category: "跨境电商",
+    status: "published",
+    coverImage: "/covers/teanary-service-cover.png",
+    projectUrl: "https://teanary-service.chatapi.fun/zh_CN",
+    githubUrl: "https://github.com/TeanaryService/teanary_service",
+    features: [
+      "中国茶品首页展示与产品浏览",
+      "中文茶文化文章与详情阅读页",
+      "演示用户与管理员自动登录",
+      "前台与管理后台双向跳转",
+      "多语言与多币种切换",
+    ],
+    techStack: ["Laravel", "Livewire", "Tailwind CSS", "SQLite", "Docker Compose", "Nginx"],
+  },
+];
+
 function formatProjectNumber(value: number): string {
   return value.toString().padStart(2, "0");
 }
@@ -42,6 +63,7 @@ function createPlaceholderProject(index: number, category: ProjectCategory): Pro
 }
 
 export const projects: Project[] = [
+  ...publishedProjects,
   ...Array.from({ length: 9 }, (_, index) =>
     createPlaceholderProject(index + 1, "跨境电商"),
   ),

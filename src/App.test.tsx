@@ -12,8 +12,8 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getAllByRole("article")).toHaveLength(9);
-    expect(screen.getByRole("heading", { name: "项目 01" })).toBeInTheDocument();
-    expect(screen.getByText("第 1 / 2 页")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Teanary" })).toBeInTheDocument();
+    expect(screen.getByText("第 1 / 3 页")).toBeInTheDocument();
   });
 
   it("keeps the header free of redundant top navigation links", () => {
@@ -34,7 +34,11 @@ describe("App", () => {
   it("reserves cover slots without rendering placeholder image files", () => {
     const { container } = render(<App />);
 
-    expect(container.querySelectorAll("img.project-cover")).toHaveLength(0);
+    expect(container.querySelectorAll("img.project-cover")).toHaveLength(1);
+    expect(screen.getByAltText("Teanary封面")).toHaveAttribute(
+      "src",
+      "/covers/teanary-service-cover.png",
+    );
     expect(screen.getByLabelText("项目 01封面预留位")).toBeInTheDocument();
   });
 
@@ -43,8 +47,8 @@ describe("App", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "第二页" }));
 
-    expect(screen.getByText("第 2 / 2 页")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "项目 10" })).toBeInTheDocument();
+    expect(screen.getByText("第 2 / 3 页")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "项目 09" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
   });
 
@@ -63,14 +67,36 @@ describe("App", () => {
     render(<App />);
 
     fireEvent.change(screen.getByLabelText("搜索项目、技术栈或关键词"), {
-      target: { value: "项目 01" },
+      target: { value: "Teanary" },
     });
 
     const cards = screen.getAllByRole("article");
     expect(cards).toHaveLength(1);
     expect(within(cards[0]).getByRole("link", { name: "查看详情" })).toHaveAttribute(
       "href",
-      "/projects/project-01",
+      "/projects/teanary-service",
+    );
+  });
+
+  it("renders the Teanary detail page with external links and cover image", () => {
+    window.history.pushState({}, "", "/projects/teanary-service");
+
+    render(<App />);
+
+    expect(screen.getByRole("heading", { name: "Teanary" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
+      "href",
+      "https://teanary-service.chatapi.fun/zh_CN",
+    );
+    expect(screen.getByRole("link", { name: /GitHub/ })).toHaveAttribute(
+      "href",
+      "https://github.com/TeanaryService/teanary_service",
+    );
+    expect(screen.getByText("演示用户与管理员自动登录")).toBeInTheDocument();
+    expect(screen.getByText("Docker Compose")).toBeInTheDocument();
+    expect(screen.getByAltText("Teanary封面")).toHaveAttribute(
+      "src",
+      "/covers/teanary-service-cover.png",
     );
   });
 

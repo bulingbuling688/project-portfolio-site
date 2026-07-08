@@ -26,7 +26,9 @@ describe("portfolio project browsing", () => {
       "project-01",
     ]);
 
-    expect(filterProjects(projects, "待补充", "全部")).toHaveLength(projects.length);
+    expect(filterProjects(projects, "待补充", "全部")).toHaveLength(
+      projects.filter((project) => project.status === "draft").length,
+    );
 
     expect(filterProjects(projects, "占位技术", "全部").every((project) => {
       return [
@@ -41,8 +43,23 @@ describe("portfolio project browsing", () => {
   it("filters projects by category before pagination", () => {
     const crossBorderProjects = filterProjects(projects, "", "跨境电商");
 
-    expect(crossBorderProjects).toHaveLength(9);
+    expect(crossBorderProjects).toHaveLength(10);
     expect(crossBorderProjects.every((project) => project.category === "跨境电商")).toBe(true);
+  });
+
+  it("includes the published Teanary project with its live links and cover", () => {
+    expect(projects).toContainEqual(
+      expect.objectContaining({
+        slug: "teanary-service",
+        title: "Teanary",
+        category: "跨境电商",
+        status: "published",
+        coverImage: "/covers/teanary-service-cover.png",
+        projectUrl: "https://teanary-service.chatapi.fun/zh_CN",
+        githubUrl: "https://github.com/TeanaryService/teanary_service",
+        techStack: expect.arrayContaining(["Laravel", "Livewire", "Docker Compose", "Nginx"]),
+      }),
+    );
   });
 
   it("keeps draft projects visible in test mode", () => {
@@ -72,11 +89,11 @@ describe("portfolio project browsing", () => {
     expect(PAGE_SIZE).toBe(9);
     expect(getVisibleProjects(projects, 1)).toHaveLength(9);
     expect(getVisibleProjects(projects, 2)).toHaveLength(9);
-    expect(getTotalPages(projects)).toBe(2);
+    expect(getTotalPages(projects)).toBe(3);
   });
 
   it("builds Chinese pagination labels from the data-driven page count", () => {
-    expect(buildPageLabels(2)).toEqual(["第一页", "第二页"]);
+    expect(buildPageLabels(3)).toEqual(["第一页", "第二页", "第三页"]);
   });
 
   it("resets to the first page when search or category changes", () => {
