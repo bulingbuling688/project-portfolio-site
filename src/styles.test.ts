@@ -11,4 +11,9 @@ describe("portfolio layout styles", () => {
   it("uses a shorter cover slot while placeholder images are missing", () => {
     expect(styles).toContain("aspect-ratio: 5 / 2;");
   });
+
+  it("keeps long project tech tags inside card bounds", () => {
+    expect(styles).toContain("text-overflow: ellipsis;");
+    expect(styles).toContain("white-space: nowrap;");
+  });
 });

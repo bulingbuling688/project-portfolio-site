@@ -95,7 +95,11 @@ describe("App", () => {
     expect(
       screen.getByText("构建独立域名流量承接入口，帮助品牌摆脱平台依赖并沉淀自有用户资产"),
     ).toBeInTheDocument();
-    expect(screen.getByText("Docker Compose")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "部署与基础设施：Docker Compose、Nginx、HTTPS、VPS 私有化部署、反向代理、静态资源服务、域名访问，形成完整线上交付链路",
+      ),
+    ).toBeInTheDocument();
     expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
