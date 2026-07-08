@@ -66,9 +66,9 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("tab", { name: "中转站" }));
 
     expect(screen.getAllByRole("article")).toHaveLength(9);
-    expect(screen.getByRole("heading", { name: "AI 数字人口播生产台" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "New API 中转站运营平台" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "项目 10" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "AI 数字人口播生产台" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
     expect(screen.getByText("第 1 / 2 页")).toBeInTheDocument();
   });

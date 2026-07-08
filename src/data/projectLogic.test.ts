@@ -43,7 +43,7 @@ describe("portfolio project browsing", () => {
   it("filters projects by category before pagination", () => {
     const crossBorderProjects = filterProjects(projects, "", "跨境电商");
 
-    expect(crossBorderProjects).toHaveLength(10);
+    expect(crossBorderProjects).toHaveLength(11);
     expect(crossBorderProjects.every((project) => project.category === "跨境电商")).toBe(true);
   });
 
@@ -89,7 +89,7 @@ describe("portfolio project browsing", () => {
         title: "AI 数字人口播生产台",
         description:
           "AI 数字人口播生产台已成功应用于抖音、TikTok 等短视频内容生产场景，累计生产 100+ 条数字人口播短视频，播放量超 100w+，是一个围绕数字人形象资产、声音配置、口播内容生成、AI 模型接入、视频驱动和私有化部署打造的数字人内容生产系统，支持从角色配置、脚本生成、语音合成到数字人口播视频生成的完整链路。",
-        category: "中转站",
+        category: "跨境电商",
         status: "published",
         coverImage: "/covers/opentalking-cover.png",
         projectUrl: "https://opentalking.chatapi.fun",
