@@ -26,7 +26,7 @@ export const SHOW_DRAFT_PROJECTS = true;
 const publishedProjects: Project[] = [
   {
     slug: "teanary-service",
-    title: "Teanary",
+    title: "Teanary(自建独立站)",
     description:
       "Teanary 是一个面向跨境品牌增长打造的高完成度电商独立站，围绕海外流量承接、品牌信任建立、内容种草转化、用户路径优化和后台运营管理构建完整业务体系，突出独立站在品牌资产沉淀、转化链路掌控和私域运营中的核心价值，基本上已经完成了独立站需要的全部功能。",
     category: "跨境电商",

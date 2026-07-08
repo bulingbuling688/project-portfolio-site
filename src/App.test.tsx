@@ -12,7 +12,7 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getAllByRole("article")).toHaveLength(9);
-    expect(screen.getByRole("heading", { name: "Teanary" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Teanary(自建独立站)" })).toBeInTheDocument();
     expect(screen.getByText("第 1 / 3 页")).toBeInTheDocument();
   });
 
@@ -35,7 +35,7 @@ describe("App", () => {
     const { container } = render(<App />);
 
     expect(container.querySelectorAll("img.project-cover")).toHaveLength(1);
-    expect(screen.getByAltText("Teanary封面")).toHaveAttribute(
+    expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
     );
@@ -83,7 +83,7 @@ describe("App", () => {
 
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "Teanary" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Teanary(自建独立站)" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
       "href",
       "https://teanary-service.chatapi.fun/zh_CN",
@@ -96,7 +96,7 @@ describe("App", () => {
       screen.getByText("构建独立域名流量承接入口，帮助品牌摆脱平台依赖并沉淀自有用户资产"),
     ).toBeInTheDocument();
     expect(screen.getByText("Docker Compose")).toBeInTheDocument();
-    expect(screen.getByAltText("Teanary封面")).toHaveAttribute(
+    expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
     );
