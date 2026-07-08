@@ -92,7 +92,9 @@ describe("App", () => {
       "href",
       "https://github.com/TeanaryService/teanary_service",
     );
-    expect(screen.getByText("演示用户与管理员自动登录")).toBeInTheDocument();
+    expect(
+      screen.getByText("构建独立域名流量承接入口，帮助品牌摆脱平台依赖并沉淀自有用户资产"),
+    ).toBeInTheDocument();
     expect(screen.getByText("Docker Compose")).toBeInTheDocument();
     expect(screen.getByAltText("Teanary封面")).toHaveAttribute(
       "src",
