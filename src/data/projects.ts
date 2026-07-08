@@ -61,7 +61,7 @@ const publishedProjects: Project[] = [
       "New API 中转站运营平台已跑通 AI API 服务从资源接入、用户增长、额度售卖、调用计费到持续复购的完整商业闭环，累计盈利 3w+，服务用户 30+，日 Token 调用量 50 亿+，具备真实商业收入、真实用户使用和高频调用验证，是一个可运营、可复制、可持续交付的多模型 API 中转平台。",
     category: "中转站",
     status: "published",
-    coverImage: "/covers/newapi-cpa-dashboard.png",
+    coverImage: "/covers/newapi-cpa-dashboard.png?v=20260708-restore",
     projectUrl: "https://api.chatapi.fun/",
     githubUrl: "https://github.com/bulingbuling688/newapi-cpa-proxy-deploy",
     features: [

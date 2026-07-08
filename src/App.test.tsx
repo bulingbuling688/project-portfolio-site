@@ -41,7 +41,7 @@ describe("App", () => {
     );
     expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
-      "/covers/newapi-cpa-dashboard.png",
+      "/covers/newapi-cpa-dashboard.png?v=20260708-restore",
     );
     expect(screen.getByLabelText("项目 01封面预留位")).toBeInTheDocument();
   });
@@ -137,7 +137,7 @@ describe("App", () => {
     ).toBeInTheDocument();
     expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
-      "/covers/newapi-cpa-dashboard.png",
+      "/covers/newapi-cpa-dashboard.png?v=20260708-restore",
     );
   });
 
