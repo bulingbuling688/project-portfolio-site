@@ -34,10 +34,14 @@ describe("App", () => {
   it("reserves cover slots without rendering placeholder image files", () => {
     const { container } = render(<App />);
 
-    expect(container.querySelectorAll("img.project-cover")).toHaveLength(1);
+    expect(container.querySelectorAll("img.project-cover")).toHaveLength(2);
     expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
+    );
+    expect(screen.getByAltText("ChatAPI 多模型中转站封面")).toHaveAttribute(
+      "src",
+      "/covers/newapi-cpa-dashboard.png",
     );
     expect(screen.getByLabelText("项目 01封面预留位")).toBeInTheDocument();
   });
@@ -58,9 +62,10 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("tab", { name: "中转站" }));
 
     expect(screen.getAllByRole("article")).toHaveLength(9);
+    expect(screen.getByRole("heading", { name: "ChatAPI 多模型中转站" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "项目 10" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
-    expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
+    expect(screen.getByText("第 1 / 2 页")).toBeInTheDocument();
   });
 
   it("filters through search and keeps detail navigation available", () => {
@@ -103,6 +108,28 @@ describe("App", () => {
     expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
+    );
+  });
+
+  it("renders the ChatAPI NewAPI detail page with external links and cover image", () => {
+    window.history.pushState({}, "", "/projects/newapi-cpa-proxy-deploy");
+
+    render(<App />);
+
+    expect(screen.getByRole("heading", { name: "ChatAPI 多模型中转站" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
+      "href",
+      "https://api.chatapi.fun/",
+    );
+    expect(screen.getByRole("link", { name: /GitHub/ })).toHaveAttribute(
+      "href",
+      "https://github.com/bulingbuling688/newapi-cpa-proxy-deploy",
+    );
+    expect(screen.getByText("提供统一的 OpenAI-compatible API 入口")).toBeInTheDocument();
+    expect(screen.getByText("CLIProxyAPI")).toBeInTheDocument();
+    expect(screen.getByAltText("ChatAPI 多模型中转站封面")).toHaveAttribute(
+      "src",
+      "/covers/newapi-cpa-dashboard.png",
     );
   });
 

@@ -82,6 +82,39 @@ describe("portfolio project browsing", () => {
     );
   });
 
+  it("includes the published ChatAPI NewAPI project with its live links and cover", () => {
+    expect(projects).toContainEqual(
+      expect.objectContaining({
+        slug: "newapi-cpa-proxy-deploy",
+        title: "ChatAPI 多模型中转站",
+        description: "基于 New API、CPA 账号池和多上游路由搭建的 OpenAI-compatible API 中转站。",
+        category: "中转站",
+        status: "published",
+        coverImage: "/covers/newapi-cpa-dashboard.png",
+        projectUrl: "https://api.chatapi.fun/",
+        githubUrl: "https://github.com/bulingbuling688/newapi-cpa-proxy-deploy",
+        features: [
+          "提供统一的 OpenAI-compatible API 入口",
+          "通过 New API 管理用户、令牌、模型渠道和额度",
+          "接入 CPA/CLIProxyAPI 账号池代理 Codex/ChatGPT OAuth",
+          "支持 GPT 系列与 Grok 等多上游模型路由",
+          "包含用量采集、账号池状态管理和 Docker 化部署模板",
+        ],
+        techStack: [
+          "New API",
+          "CLIProxyAPI",
+          "Docker Compose",
+          "PostgreSQL",
+          "Redis",
+          "Python",
+          "FastAPI",
+          "Nginx",
+          "Cloudflare",
+        ],
+      }),
+    );
+  });
+
   it("keeps draft projects visible in test mode", () => {
     const fixtureProjects: Project[] = [
       { ...baseProject, slug: "draft-project", status: "draft" },
