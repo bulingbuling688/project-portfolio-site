@@ -39,7 +39,7 @@ describe("App", () => {
       "src",
       "/covers/teanary-service-cover.png",
     );
-    expect(screen.getByAltText("ChatAPI 多模型中转站封面")).toHaveAttribute(
+    expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
       "/covers/newapi-cpa-dashboard.png",
     );
@@ -62,7 +62,7 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("tab", { name: "中转站" }));
 
     expect(screen.getAllByRole("article")).toHaveLength(9);
-    expect(screen.getByRole("heading", { name: "ChatAPI 多模型中转站" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "New API 中转站运营平台" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "项目 10" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
     expect(screen.getByText("第 1 / 2 页")).toBeInTheDocument();
@@ -116,7 +116,7 @@ describe("App", () => {
 
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "ChatAPI 多模型中转站" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "New API 中转站运营平台" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
       "href",
       "https://api.chatapi.fun/",
@@ -125,9 +125,17 @@ describe("App", () => {
       "href",
       "https://github.com/bulingbuling688/newapi-cpa-proxy-deploy",
     );
-    expect(screen.getByText("提供统一的 OpenAI-compatible API 入口")).toBeInTheDocument();
-    expect(screen.getByText("CLIProxyAPI")).toBeInTheDocument();
-    expect(screen.getByAltText("ChatAPI 多模型中转站封面")).toHaveAttribute(
+    expect(
+      screen.getByText(
+        "跑通 AI API 中转站从模型接入、用户注册、令牌发放、额度充值、调用计费到持续复购的完整商业闭环，累计盈利 3w+",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "账号池与资源调度：CPA、CLIProxyAPI、ChatGPT OAuth、Codex 账号接入、多账号轮询、渠道可用性管理",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
       "/covers/newapi-cpa-dashboard.png",
     );
