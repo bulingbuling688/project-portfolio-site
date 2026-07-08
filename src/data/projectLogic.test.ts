@@ -82,6 +82,42 @@ describe("portfolio project browsing", () => {
     );
   });
 
+  it("includes the published OpenTalking project with its live links and cover", () => {
+    expect(projects).toContainEqual(
+      expect.objectContaining({
+        slug: "opentalking",
+        title: "AI 数字人口播生产台",
+        description:
+          "AI 数字人口播生产台已成功应用于抖音、TikTok 等短视频内容生产场景，累计生产 100+ 条数字人口播短视频，播放量超 100w+，是一个围绕数字人形象资产、声音配置、口播内容生成、AI 模型接入、视频驱动和私有化部署打造的数字人内容生产系统，支持从角色配置、脚本生成、语音合成到数字人口播视频生成的完整链路。",
+        category: "中转站",
+        status: "published",
+        coverImage: "/covers/opentalking-cover.png",
+        projectUrl: "https://opentalking.chatapi.fun",
+        githubUrl: "https://github.com/bulingbuling688/opentalking",
+        features: [
+          "构建数字人口播内容生产工作台，支持从角色选择、声音配置、口播脚本到视频生成的完整生产流程",
+          "支持数字人形象资产管理，可浏览、选择和维护多种人物形象，为抖音、TikTok 等账号矩阵提供可复用素材基础",
+          "接入 TTS 语音合成能力，可根据口播脚本生成自然语音，为数字人口播视频提供声音驱动",
+          "保留 FlashTalk、MuseTalk、Wav2Lip、QuickTalk 等多种数字人驱动模型接入位，支持按不同质量、速度和成本场景切换",
+          "集成 LLM 与知识库能力，支持基于主题、产品卖点和角色设定生成或扩展口播内容，提高短视频脚本生产效率",
+          "提供 WebRTC、WebSocket、SSE 等实时交互基础，支撑数字人预览、生成状态同步和前后端实时反馈",
+          "通过 Docker Compose 完成 Web、API、Worker、Redis 的私有化部署，支持数字人内容生产系统独立上线和持续运维",
+          "已应用于抖音、TikTok 等短视频内容生产场景，累计生产 100+ 条数字人口播短视频，播放量超 100w+",
+        ],
+        techStack: [
+          "前端生产台：React 18、Vite 5、TypeScript、Tailwind CSS、PostCSS、响应式工作台布局、数字人资产选择、脚本与生成面板",
+          "后端接口层：Python 3.11、FastAPI、Uvicorn、Pydantic、Pydantic Settings、REST API、事件流接口、服务配置管理",
+          "AI 文案与模型接入：OpenAI SDK、OpenAI-compatible API、DashScope、LightRAG、mem0、Hugging Face Hub，支持脚本生成、知识增强和可插拔模型配置",
+          "语音与口播生成：edge-tts、TTS 配置、声音选择、语音合成、口播音频生成，为数字人视频驱动提供音频输入",
+          "数字人视频驱动：FlashTalk、MuseTalk、Wav2Lip、QuickTalk、FFmpeg、OpenCV、MediaPipe、Kornia、InsightFace、Transformers、rembg、Pillow、AV",
+          "实时通信与任务状态：WebRTC、aiortc、WebSockets、SSE、Redis、Worker 服务、任务队列式处理、健康检查",
+          "部署与基础设施：Docker Compose、Nginx 反向代理、HTTPS、Cloudflare 域名、VPS 私有化部署，实现公网访问和生产环境交付",
+          "工程化与运维：GitHub、pyproject.toml、Dockerfile、环境变量隔离、容器日志、生产构建、健康检查、部署文档和故障排查",
+        ],
+      }),
+    );
+  });
+
   it("includes the published ChatAPI NewAPI project with its live links and cover", () => {
     expect(projects).toContainEqual(
       expect.objectContaining({

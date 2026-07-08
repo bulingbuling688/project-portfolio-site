@@ -34,10 +34,14 @@ describe("App", () => {
   it("reserves cover slots without rendering placeholder image files", () => {
     const { container } = render(<App />);
 
-    expect(container.querySelectorAll("img.project-cover")).toHaveLength(2);
+    expect(container.querySelectorAll("img.project-cover")).toHaveLength(3);
     expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
+    );
+    expect(screen.getByAltText("AI 数字人口播生产台封面")).toHaveAttribute(
+      "src",
+      "/covers/opentalking-cover.png",
     );
     expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
@@ -62,6 +66,7 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("tab", { name: "中转站" }));
 
     expect(screen.getAllByRole("article")).toHaveLength(9);
+    expect(screen.getByRole("heading", { name: "AI 数字人口播生产台" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "New API 中转站运营平台" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "项目 10" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
@@ -138,6 +143,36 @@ describe("App", () => {
     expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
       "/covers/newapi-cpa-dashboard.png?v=20260708-restore",
+    );
+  });
+
+  it("renders the OpenTalking detail page with production positioning and cover image", () => {
+    window.history.pushState({}, "", "/projects/opentalking");
+
+    render(<App />);
+
+    expect(screen.getByRole("heading", { name: "AI 数字人口播生产台" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
+      "href",
+      "https://opentalking.chatapi.fun",
+    );
+    expect(screen.getByRole("link", { name: /GitHub/ })).toHaveAttribute(
+      "href",
+      "https://github.com/bulingbuling688/opentalking",
+    );
+    expect(
+      screen.getByText(
+        "已应用于抖音、TikTok 等短视频内容生产场景，累计生产 100+ 条数字人口播短视频，播放量超 100w+",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "数字人视频驱动：FlashTalk、MuseTalk、Wav2Lip、QuickTalk、FFmpeg、OpenCV、MediaPipe、Kornia、InsightFace、Transformers、rembg、Pillow、AV",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByAltText("AI 数字人口播生产台封面")).toHaveAttribute(
+      "src",
+      "/covers/opentalking-cover.png",
     );
   });
 
