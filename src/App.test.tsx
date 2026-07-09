@@ -200,11 +200,13 @@ describe("App", () => {
       "https://github.com/bulingbuling688/openclaw-digest-hub",
     );
     expect(
-      screen.getByText("知乎关注内容抓取、过滤、去重和推送，支持 AI 评价与长文展示"),
+      screen.getByText(
+        "自动聚合跨境电商动态，对英文资讯、平台变化和行业消息进行中文整理，降低信息筛选和理解成本",
+      ),
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "AI/模型能力：DeepSeek-compatible Chat Completions、中文翻译、AI 点评、信息价值筛选",
+        "AI 分析层：DeepSeek-compatible Chat Completions、中文翻译、AI 摘要、AI 点评、行业动态解读",
       ),
     ).toBeInTheDocument();
     expect(screen.getByAltText("openclaw:跨境电商+AI资讯推送封面")).toHaveAttribute(
