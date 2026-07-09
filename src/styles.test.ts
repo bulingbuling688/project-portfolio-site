@@ -12,8 +12,7 @@ describe("portfolio layout styles", () => {
     expect(styles).toContain("aspect-ratio: 5 / 2;");
   });
 
-  it("keeps long project tech tags inside card bounds", () => {
-    expect(styles).toContain("text-overflow: ellipsis;");
-    expect(styles).toContain("white-space: nowrap;");
+  it("keeps technology stack previews out of project cards", () => {
+    expect(styles).not.toContain(".project-tags");
   });
 });

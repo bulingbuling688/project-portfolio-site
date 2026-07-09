@@ -54,6 +54,13 @@ describe("App", () => {
     expect(screen.getByLabelText("项目 01封面预留位")).toBeInTheDocument();
   });
 
+  it("keeps technology stack previews off project cards", () => {
+    render(<App />);
+
+    expect(screen.queryByLabelText("Teanary(自建独立站)技术栈")).not.toBeInTheDocument();
+    expect(screen.queryByText(/前端展示层：Livewire/)).not.toBeInTheDocument();
+  });
+
   it("switches to the second page through pagination", () => {
     render(<App />);
 

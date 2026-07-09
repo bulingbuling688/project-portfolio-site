@@ -93,11 +93,6 @@ function ProjectCard({ project }: { project: Project }) {
           <span>{project.category}</span>
         </div>
         <p className="project-description">{project.description}</p>
-        <div className="project-tags" aria-label={`${project.title}技术栈`}>
-          {project.techStack.slice(0, 4).map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
         <div className="project-actions">
           <a className="case-link" href={`/projects/${project.slug}`}>
             查看详情
