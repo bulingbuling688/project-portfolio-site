@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="项目作品集">
+  <rect width="64" height="64" rx="14" fill="#111827" />
+  <path
+    d="M20 44V19h16c7 0 11 4 11 10s-4 10-11 10h-8v5"
+    fill="none"
+    stroke="#38bdf8"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M28 29h8"
+    fill="none"
+    stroke="#34d399"
+    stroke-width="5"
+    stroke-linecap="round"
+  />
+</svg>
