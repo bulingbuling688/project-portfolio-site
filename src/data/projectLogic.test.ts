@@ -42,9 +42,12 @@ describe("portfolio project browsing", () => {
 
   it("filters projects by category before pagination", () => {
     const crossBorderProjects = filterProjects(projects, "", "跨境电商");
+    const relayProjects = filterProjects(projects, "", "中转站");
 
     expect(crossBorderProjects).toHaveLength(11);
     expect(crossBorderProjects.every((project) => project.category === "跨境电商")).toBe(true);
+    expect(relayProjects).toHaveLength(11);
+    expect(relayProjects.every((project) => project.category === "中转站")).toBe(true);
   });
 
   it("includes the published Teanary project with its live links and cover", () => {
@@ -147,6 +150,39 @@ describe("portfolio project browsing", () => {
           "部署与基础设施：Docker Compose、Nginx、Cloudflare、HTTPS、VPS 私有化部署、反向代理、域名网关",
           "监控与运维能力：服务健康检查、日志排查、账号池状态维护、备份、生产环境迁移",
           "工程化与安全：GitHub、环境变量隔离、配置脱敏、访问控制、公开仓库脱敏发布",
+        ],
+      }),
+    );
+  });
+
+  it("includes the published OpenClaw project with its live links and cover", () => {
+    expect(projects).toContainEqual(
+      expect.objectContaining({
+        slug: "openclaw-digest-hub",
+        title: "OpenClaw 信息推送中枢",
+        description:
+          "基于自托管 ntfy 的多信源信息推送面板，聚合知乎关注、跨境电商动态和 AI 短讯。",
+        category: "中转站",
+        status: "published",
+        coverImage: "/covers/openclaw-digest-hub-cover.png",
+        projectUrl: "https://openclaw.chatapi.fun",
+        githubUrl: "https://github.com/bulingbuling688/openclaw-digest-hub",
+        features: [
+          "自托管 openclaw/ntfy Web 前端，默认展示 AI资讯、跨境电商、知乎关注三个订阅主题",
+          "知乎关注内容抓取、过滤、去重和推送，支持 AI 评价与长文展示",
+          "跨境电商动态聚合，自动翻译为中文并追加 AI 点评",
+          "AI 短讯源聚合，筛选短内容信源后推送中文整理版",
+          "三个定时任务按 4 小时间隔错峰执行，降低模型和网络请求冲突",
+          "Nginx HTTPS 入口、WebSocket 代理和静态前端资源覆盖",
+          "运行状态、缓存、密钥和发布代码分离，避免敏感信息进入公开仓库",
+        ],
+        techStack: [
+          "前端与交互：ntfy Web 定制前端、静态资源覆盖、IndexedDB 默认订阅、浏览器通知面板",
+          "内容处理：Python 3、RSS/Atom 解析、Zhihu API 抓取、内容过滤、去重状态管理",
+          "AI/模型能力：DeepSeek-compatible Chat Completions、中文翻译、AI 点评、信息价值筛选",
+          "推送通道：ntfy HTTP API、WebSocket 订阅、分 topic 消息流",
+          "部署与基础设施：Docker Compose、Nginx、Let's Encrypt HTTPS、Cloudflare DNS、VPS",
+          "运维工程：systemd service/timer、日志排查、配置备份、环境变量与密钥文件隔离、GitHub 发布仓库",
         ],
       }),
     );

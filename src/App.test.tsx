@@ -34,7 +34,7 @@ describe("App", () => {
   it("reserves cover slots without rendering placeholder image files", () => {
     const { container } = render(<App />);
 
-    expect(container.querySelectorAll("img.project-cover")).toHaveLength(3);
+    expect(container.querySelectorAll("img.project-cover")).toHaveLength(4);
     expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
@@ -46,6 +46,10 @@ describe("App", () => {
     expect(screen.getByAltText("New API 中转站运营平台封面")).toHaveAttribute(
       "src",
       "/covers/newapi-cpa-dashboard.png",
+    );
+    expect(screen.getByAltText("OpenClaw 信息推送中枢封面")).toHaveAttribute(
+      "src",
+      "/covers/openclaw-digest-hub-cover.png",
     );
     expect(screen.getByLabelText("项目 01封面预留位")).toBeInTheDocument();
   });
@@ -67,6 +71,7 @@ describe("App", () => {
 
     expect(screen.getAllByRole("article")).toHaveLength(9);
     expect(screen.getByRole("heading", { name: "New API 中转站运营平台" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "OpenClaw 信息推送中枢" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "项目 10" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "AI 数字人口播生产台" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
@@ -173,6 +178,34 @@ describe("App", () => {
     expect(screen.getByAltText("AI 数字人口播生产台封面")).toHaveAttribute(
       "src",
       "/covers/opentalking-cover.png",
+    );
+  });
+
+  it("renders the OpenClaw detail page with external links and cover image", () => {
+    window.history.pushState({}, "", "/projects/openclaw-digest-hub");
+
+    render(<App />);
+
+    expect(screen.getByRole("heading", { name: "OpenClaw 信息推送中枢" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
+      "href",
+      "https://openclaw.chatapi.fun",
+    );
+    expect(screen.getByRole("link", { name: /GitHub/ })).toHaveAttribute(
+      "href",
+      "https://github.com/bulingbuling688/openclaw-digest-hub",
+    );
+    expect(
+      screen.getByText("知乎关注内容抓取、过滤、去重和推送，支持 AI 评价与长文展示"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "AI/模型能力：DeepSeek-compatible Chat Completions、中文翻译、AI 点评、信息价值筛选",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByAltText("OpenClaw 信息推送中枢封面")).toHaveAttribute(
+      "src",
+      "/covers/openclaw-digest-hub-cover.png",
     );
   });
 
