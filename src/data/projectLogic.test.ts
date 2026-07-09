@@ -44,9 +44,9 @@ describe("portfolio project browsing", () => {
     const crossBorderProjects = filterProjects(projects, "", "跨境电商");
     const relayProjects = filterProjects(projects, "", "中转站");
 
-    expect(crossBorderProjects).toHaveLength(11);
+    expect(crossBorderProjects).toHaveLength(12);
     expect(crossBorderProjects.every((project) => project.category === "跨境电商")).toBe(true);
-    expect(relayProjects).toHaveLength(11);
+    expect(relayProjects).toHaveLength(10);
     expect(relayProjects.every((project) => project.category === "中转站")).toBe(true);
   });
 
@@ -159,10 +159,10 @@ describe("portfolio project browsing", () => {
     expect(projects).toContainEqual(
       expect.objectContaining({
         slug: "openclaw-digest-hub",
-        title: "OpenClaw 信息推送中枢",
+        title: "openclaw:跨境电商+AI资讯推送",
         description:
           "基于自托管 ntfy 的多信源信息推送面板，聚合知乎关注、跨境电商动态和 AI 短讯。",
-        category: "中转站",
+        category: "跨境电商",
         status: "published",
         coverImage: "/covers/openclaw-digest-hub-cover.png",
         projectUrl: "https://openclaw.chatapi.fun",

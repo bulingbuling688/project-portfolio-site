@@ -47,7 +47,7 @@ describe("App", () => {
       "src",
       "/covers/newapi-cpa-dashboard.png",
     );
-    expect(screen.getByAltText("OpenClaw 信息推送中枢封面")).toHaveAttribute(
+    expect(screen.getByAltText("openclaw:跨境电商+AI资讯推送封面")).toHaveAttribute(
       "src",
       "/covers/openclaw-digest-hub-cover.png",
     );
@@ -71,8 +71,10 @@ describe("App", () => {
 
     expect(screen.getAllByRole("article")).toHaveLength(9);
     expect(screen.getByRole("heading", { name: "New API 中转站运营平台" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "OpenClaw 信息推送中枢" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "项目 10" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "openclaw:跨境电商+AI资讯推送" }),
+    ).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "AI 数字人口播生产台" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
     expect(screen.getByText("第 1 / 2 页")).toBeInTheDocument();
@@ -186,7 +188,9 @@ describe("App", () => {
 
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "OpenClaw 信息推送中枢" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "openclaw:跨境电商+AI资讯推送" }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
       "href",
       "https://openclaw.chatapi.fun",
@@ -203,7 +207,7 @@ describe("App", () => {
         "AI/模型能力：DeepSeek-compatible Chat Completions、中文翻译、AI 点评、信息价值筛选",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByAltText("OpenClaw 信息推送中枢封面")).toHaveAttribute(
+    expect(screen.getByAltText("openclaw:跨境电商+AI资讯推送封面")).toHaveAttribute(
       "src",
       "/covers/openclaw-digest-hub-cover.png",
     );

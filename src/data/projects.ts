@@ -116,9 +116,9 @@ const publishedProjects: Project[] = [
   },
   {
     slug: "openclaw-digest-hub",
-    title: "OpenClaw 信息推送中枢",
+    title: "openclaw:跨境电商+AI资讯推送",
     description: "基于自托管 ntfy 的多信源信息推送面板，聚合知乎关注、跨境电商动态和 AI 短讯。",
-    category: "中转站",
+    category: "跨境电商",
     status: "published",
     coverImage: "/covers/openclaw-digest-hub-cover.png",
     projectUrl: "https://openclaw.chatapi.fun",
