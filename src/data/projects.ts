@@ -21,7 +21,7 @@ export type Project = {
   techStack: string[];
 };
 
-export const SHOW_DRAFT_PROJECTS = true;
+export const SHOW_DRAFT_PROJECTS = false;
 
 const publishedProjects: Project[] = [
   {

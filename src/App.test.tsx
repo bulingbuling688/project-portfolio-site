@@ -8,12 +8,13 @@ describe("App", () => {
     window.history.pushState({}, "", "/");
   });
 
-  it("renders nine project cards on the first page", () => {
+  it("renders only published project cards", () => {
     render(<App />);
 
-    expect(screen.getAllByRole("article")).toHaveLength(9);
+    expect(screen.getAllByRole("article")).toHaveLength(4);
     expect(screen.getByRole("heading", { name: "Teanary(自建独立站)" })).toBeInTheDocument();
-    expect(screen.getByText("第 1 / 3 页")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
+    expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
   });
 
   it("keeps the header free of redundant top navigation links", () => {
@@ -31,7 +32,7 @@ describe("App", () => {
     expect(screen.queryByText("每页 9 个")).not.toBeInTheDocument();
   });
 
-  it("reserves cover slots without rendering placeholder image files", () => {
+  it("renders real project covers without draft cover placeholders", () => {
     const { container } = render(<App />);
 
     expect(container.querySelectorAll("img.project-cover")).toHaveLength(4);
@@ -51,7 +52,7 @@ describe("App", () => {
       "src",
       "/covers/openclaw-digest-hub-cover.png",
     );
-    expect(screen.getByLabelText("项目 01封面预留位")).toBeInTheDocument();
+    expect(screen.queryByLabelText("项目 01封面预留位")).not.toBeInTheDocument();
   });
 
   it("keeps technology stack previews off project cards", () => {
@@ -61,30 +62,25 @@ describe("App", () => {
     expect(screen.queryByText(/前端展示层：Livewire/)).not.toBeInTheDocument();
   });
 
-  it("switches to the second page through pagination", () => {
+  it("does not create extra pagination for hidden draft projects", () => {
     render(<App />);
 
-    fireEvent.click(screen.getByRole("button", { name: "第二页" }));
-
-    expect(screen.getByText("第 2 / 3 页")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "项目 09" })).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "第二页" })).not.toBeInTheDocument();
+    expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
   });
 
-  it("filters by the expandable category tabs", () => {
+  it("filters published projects by category", () => {
     render(<App />);
 
     fireEvent.click(screen.getByRole("tab", { name: "中转站" }));
 
-    expect(screen.getAllByRole("article")).toHaveLength(9);
+    expect(screen.getAllByRole("article")).toHaveLength(1);
     expect(screen.getByRole("heading", { name: "New API 中转站运营平台" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "项目 10" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "项目 10" })).not.toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "openclaw:跨境电商+AI资讯推送" }),
     ).not.toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "AI 数字人口播生产台" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
-    expect(screen.getByText("第 1 / 2 页")).toBeInTheDocument();
+    expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
   });
 
   it("filters through search and keeps detail navigation available", () => {
@@ -222,17 +218,14 @@ describe("App", () => {
     );
   });
 
-  it("renders draft detail pages without unavailable external links", () => {
+  it("keeps hidden draft detail routes inaccessible", () => {
     window.history.pushState({}, "", "/projects/project-01");
 
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "项目 01" })).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /上线网站/ })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /GitHub/ })).not.toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "核心功能" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "技术栈" })).toBeInTheDocument();
-    expect(screen.getByLabelText("项目 01封面预留位")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "项目不存在" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "返回项目列表" })).toHaveAttribute("href", "/");
+    expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
   });
 
   it("shows a not found state for unknown project detail routes", () => {

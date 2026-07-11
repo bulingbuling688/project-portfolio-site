@@ -214,15 +214,17 @@ describe("portfolio project browsing", () => {
     ]);
   });
 
-  it("keeps each page to nine projects", () => {
-    expect(PAGE_SIZE).toBe(9);
-    expect(getVisibleProjects(projects, 1)).toHaveLength(9);
-    expect(getVisibleProjects(projects, 2)).toHaveLength(9);
-    expect(getTotalPages(projects)).toBe(3);
-  });
+  it("retains draft records while paginating only published projects", () => {
+    const draftProjects = projects.filter((project) => project.status === "draft");
+    const publishedProjects = getDisplayProjects(projects, false);
 
-  it("builds Chinese pagination labels from the data-driven page count", () => {
-    expect(buildPageLabels(3)).toEqual(["第一页", "第二页", "第三页"]);
+    expect(draftProjects).toHaveLength(18);
+    expect(publishedProjects).toHaveLength(4);
+    expect(publishedProjects.every((project) => project.status === "published")).toBe(true);
+    expect(PAGE_SIZE).toBe(9);
+    expect(getVisibleProjects(publishedProjects, 1)).toHaveLength(4);
+    expect(getTotalPages(publishedProjects)).toBe(1);
+    expect(buildPageLabels(getTotalPages(publishedProjects))).toEqual(["第一页"]);
   });
 
   it("resets to the first page when search or category changes", () => {
