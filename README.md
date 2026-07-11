@@ -77,13 +77,13 @@ npm run build
 | Git 分支 | `main` |
 | 包管理器 | `npm@10.8.2` |
 | 安装命令 | `npm ci` |
-| 上线代码提交 | 正在部署 |
-| 文档提交 | 正在部署 |
+| 上线代码提交 | `6c623ed6d6cb02ec711d0d21d548c56282317a69` |
+| 文档提交 | 本次 README 最终化提交，以 GitHub `main` 最新提交为准 |
 | VPS 项目目录 | `/opt/apps/project-portfolio-site` |
 | 源码目录 | `/opt/apps/project-portfolio-site` |
 | 版本目录 | `/opt/apps/project-portfolio-site/releases` |
-| 当前版本 | 正在部署 |
-| 上一版本 | 正在部署 |
+| 当前版本 | `/opt/apps/project-portfolio-site/releases/6c623ed6d6cb02ec711d0d21d548c56282317a69` |
+| 上一版本 | `/opt/apps/project-portfolio-site/releases/821b33157524216a24d959a18c38494afb567143` |
 | 静态入口 | `/var/www/project-portfolio-site` |
 | 运行方式 | `Static Nginx` |
 | 构建命令 | `npm run build` |
@@ -95,7 +95,7 @@ npm run build
 | HTTPS | `Let's Encrypt` |
 | 环境文件 | 不适用 |
 | 更新方式 | 重新运行 `github-vps-domain-publish` |
-| 回滚方式 | 本次发布验证后补充 |
+| 回滚方式 | 将 `current` 和 `/var/www/project-portfolio-site` 原子切换到上一版本的 `dist/` |
 
 ## 目录结构
 
@@ -114,6 +114,18 @@ git -C /opt/apps/project-portfolio-site status --short
 git -C /opt/apps/project-portfolio-site branch --show-current
 readlink -f /opt/apps/project-portfolio-site/current
 readlink -f /var/www/project-portfolio-site
+```
+
+回滚到上一版本：
+
+```bash
+root=/opt/apps/project-portfolio-site
+previous=$root/releases/821b33157524216a24d959a18c38494afb567143
+sudo ln -sfn "$previous" "$root/current.next"
+sudo mv -Tf "$root/current.next" "$root/current"
+sudo ln -sfn "$root/current/dist" /var/www/project-portfolio-site.next
+sudo mv -Tf /var/www/project-portfolio-site.next /var/www/project-portfolio-site
+sudo nginx -t
 ```
 
 ## 维护记录
