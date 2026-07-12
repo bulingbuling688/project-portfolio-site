@@ -77,8 +77,8 @@ npm run build
 | Git 分支 | `main` |
 | 包管理器 | `npm@10.8.2` |
 | 安装命令 | `npm ci` |
-| 上线代码提交 | `6c623ed6d6cb02ec711d0d21d548c56282317a69` |
-| 文档提交 | 本次 README 最终化提交，以 GitHub `main` 最新提交为准 |
+| 上线代码提交 | 本次版本正在部署；当前线上为 `6c623ed6d6cb02ec711d0d21d548c56282317a69` |
+| 文档提交 | 本次版本正在部署 |
 | VPS 项目目录 | `/opt/apps/project-portfolio-site` |
 | 源码目录 | `/opt/apps/project-portfolio-site` |
 | 版本目录 | `/opt/apps/project-portfolio-site/releases` |
@@ -132,6 +132,7 @@ sudo nginx -t
 
 - 2026-07-08：完成首次 GitHub、VPS、Nginx、Cloudflare DNS 和 HTTPS 发布。
 - 2026-07-11：隐藏公开页面中的草稿占位项目，保留草稿数据供后续补充，并升级为版本化静态发布流程。
+- 2026-07-12：新增“跨境电商 AI 数据分析助理”项目、“AI 数据应用”分类和真实工作台封面，并修复移动端分类与长标题溢出。
 
 ## 开源许可与第三方说明
 
