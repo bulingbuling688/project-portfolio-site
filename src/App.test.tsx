@@ -13,7 +13,7 @@ describe("App", () => {
 
     expect(screen.getAllByRole("article")).toHaveLength(5);
     expect(
-      screen.getByRole("heading", { name: "跨境电商 AI 数据分析助理" }),
+      screen.getByRole("heading", { name: "跨境电商 AI 数据分析 Agent" }),
     ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Teanary(自建独立站)" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("App", () => {
     const { container } = render(<App />);
 
     expect(container.querySelectorAll("img.project-cover")).toHaveLength(5);
-    expect(screen.getByAltText("跨境电商 AI 数据分析助理封面")).toHaveAttribute(
+    expect(screen.getByAltText("跨境电商 AI 数据分析 Agent封面")).toHaveAttribute(
       "src",
       "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
     );
@@ -96,7 +96,7 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("tab", { name: "跨境电商" }));
 
     expect(
-      screen.getByRole("heading", { name: "跨境电商 AI 数据分析助理" }),
+      screen.getByRole("heading", { name: "跨境电商 AI 数据分析 Agent" }),
     ).toBeInTheDocument();
     expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
   });
@@ -150,7 +150,7 @@ describe("App", () => {
     render(<App />);
 
     expect(
-      screen.getByRole("heading", { name: "跨境电商 AI 数据分析助理" }),
+      screen.getByRole("heading", { name: "跨境电商 AI 数据分析 Agent" }),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
       "href",
@@ -161,14 +161,14 @@ describe("App", () => {
       "https://github.com/bulingbuling688/cross-border-ecommerce-ai-data-assistant",
     );
     expect(
-      screen.getByText("实现基于 DB-GPT ReAct Agent 的数据库查询与知识库检索链路"),
+      screen.getByText("支持数据库查询与知识库检索协同工作，Agent 能结合业务规则完成多表关联、指标计算和经营结论提炼"),
     ).toBeInTheDocument();
     expect(
       screen.getByText(
         "Agent / AI 能力层：DB-GPT ReAct Agent、DeepSeek API、OpenCode 模型接口，承担自然语言分析和工具调用",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByAltText("跨境电商 AI 数据分析助理封面")).toHaveAttribute(
+    expect(screen.getByAltText("跨境电商 AI 数据分析 Agent封面")).toHaveAttribute(
       "src",
       "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
     );

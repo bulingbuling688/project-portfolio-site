@@ -55,7 +55,7 @@ describe("portfolio project browsing", () => {
     expect(projects[0]).toEqual(
       expect.objectContaining({
         slug: "cross-border-ecommerce-ai-data-assistant",
-        title: "跨境电商 AI 数据分析助理",
+        title: "跨境电商 AI 数据分析 Agent",
         category: "跨境电商",
         status: "published",
         coverImage: "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
