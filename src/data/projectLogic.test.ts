@@ -8,7 +8,7 @@ import {
   getVisibleProjects,
   normalizePageAfterFilterChange,
 } from "./projectLogic";
-import { projects, type Project } from "./projects";
+import { projectCategories, projects, type Project } from "./projects";
 
 const baseProject: Project = {
   slug: "fixture-project",
@@ -48,6 +48,24 @@ describe("portfolio project browsing", () => {
     expect(crossBorderProjects.every((project) => project.category === "跨境电商")).toBe(true);
     expect(relayProjects).toHaveLength(10);
     expect(relayProjects.every((project) => project.category === "中转站")).toBe(true);
+  });
+
+  it("includes the published cross-border ecommerce AI data assistant", () => {
+    expect(projectCategories).toContain("AI 数据应用");
+    expect(projects[0]).toEqual(
+      expect.objectContaining({
+        slug: "cross-border-ecommerce-ai-data-assistant",
+        title: "跨境电商 AI 数据分析助理",
+        category: "AI 数据应用",
+        status: "published",
+        coverImage: "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
+        projectUrl: "https://cross-border-ecommerce-ai-data-assistant.chatapi.fun",
+        githubUrl:
+          "https://github.com/bulingbuling688/cross-border-ecommerce-ai-data-assistant",
+      }),
+    );
+    expect(projects[0].features).toHaveLength(8);
+    expect(projects[0].techStack).toHaveLength(8);
   });
 
   it("includes the published Teanary project with its live links and cover", () => {
@@ -219,10 +237,10 @@ describe("portfolio project browsing", () => {
     const publishedProjects = getDisplayProjects(projects, false);
 
     expect(draftProjects).toHaveLength(18);
-    expect(publishedProjects).toHaveLength(4);
+    expect(publishedProjects).toHaveLength(5);
     expect(publishedProjects.every((project) => project.status === "published")).toBe(true);
     expect(PAGE_SIZE).toBe(9);
-    expect(getVisibleProjects(publishedProjects, 1)).toHaveLength(4);
+    expect(getVisibleProjects(publishedProjects, 1)).toHaveLength(5);
     expect(getTotalPages(publishedProjects)).toBe(1);
     expect(buildPageLabels(getTotalPages(publishedProjects))).toEqual(["第一页"]);
   });

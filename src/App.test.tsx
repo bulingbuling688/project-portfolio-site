@@ -11,7 +11,10 @@ describe("App", () => {
   it("renders only published project cards", () => {
     render(<App />);
 
-    expect(screen.getAllByRole("article")).toHaveLength(4);
+    expect(screen.getAllByRole("article")).toHaveLength(5);
+    expect(
+      screen.getByRole("heading", { name: "跨境电商 AI 数据分析助理" }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Teanary(自建独立站)" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "项目 01" })).not.toBeInTheDocument();
     expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
@@ -35,7 +38,11 @@ describe("App", () => {
   it("renders real project covers without draft cover placeholders", () => {
     const { container } = render(<App />);
 
-    expect(container.querySelectorAll("img.project-cover")).toHaveLength(4);
+    expect(container.querySelectorAll("img.project-cover")).toHaveLength(5);
+    expect(screen.getByAltText("跨境电商 AI 数据分析助理封面")).toHaveAttribute(
+      "src",
+      "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
+    );
     expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
@@ -83,6 +90,18 @@ describe("App", () => {
     expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
   });
 
+  it("filters the AI data application category", () => {
+    render(<App />);
+
+    fireEvent.click(screen.getByRole("tab", { name: "AI 数据应用" }));
+
+    expect(screen.getAllByRole("article")).toHaveLength(1);
+    expect(
+      screen.getByRole("heading", { name: "跨境电商 AI 数据分析助理" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
+  });
+
   it("filters through search and keeps detail navigation available", () => {
     render(<App />);
 
@@ -123,6 +142,36 @@ describe("App", () => {
     expect(screen.getByAltText("Teanary(自建独立站)封面")).toHaveAttribute(
       "src",
       "/covers/teanary-service-cover.png",
+    );
+  });
+
+  it("renders the cross-border ecommerce AI data assistant detail page", () => {
+    window.history.pushState({}, "", "/projects/cross-border-ecommerce-ai-data-assistant");
+
+    render(<App />);
+
+    expect(
+      screen.getByRole("heading", { name: "跨境电商 AI 数据分析助理" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
+      "href",
+      "https://cross-border-ecommerce-ai-data-assistant.chatapi.fun",
+    );
+    expect(screen.getByRole("link", { name: /GitHub/ })).toHaveAttribute(
+      "href",
+      "https://github.com/bulingbuling688/cross-border-ecommerce-ai-data-assistant",
+    );
+    expect(
+      screen.getByText("实现基于 DB-GPT ReAct Agent 的数据库查询与知识库检索链路"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Agent / AI 能力层：DB-GPT ReAct Agent、DeepSeek API、OpenCode 模型接口，承担自然语言分析和工具调用",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByAltText("跨境电商 AI 数据分析助理封面")).toHaveAttribute(
+      "src",
+      "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
     );
   });
 

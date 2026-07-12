@@ -1,4 +1,4 @@
-export const projectCategories = ["跨境电商", "中转站"] as const;
+export const projectCategories = ["AI 数据应用", "跨境电商", "中转站"] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
 
@@ -24,6 +24,38 @@ export type Project = {
 export const SHOW_DRAFT_PROJECTS = false;
 
 const publishedProjects: Project[] = [
+  {
+    slug: "cross-border-ecommerce-ai-data-assistant",
+    title: "跨境电商 AI 数据分析助理",
+    description:
+      "面向跨境电商运营和数据分析场景的智能经营分析工作台。项目接入 Olist 真实公开电商订单数据，覆盖订单、商品、客户、卖家、支付、评价和地理位置等业务对象，支持用户通过自然语言完成销售趋势、品类表现、区域履约和客户体验分析。系统打通了业务提问、默认数据源与知识库加载、SQL 分析、执行过程查看和结果追问链路，当前已完成前端业务化改造、中文本地化、AI 模型接入、容器化部署及公网 HTTPS 上线。",
+    category: "AI 数据应用",
+    status: "published",
+    coverImage: "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
+    projectUrl: "https://cross-border-ecommerce-ai-data-assistant.chatapi.fun",
+    githubUrl:
+      "https://github.com/bulingbuling688/cross-border-ecommerce-ai-data-assistant",
+    features: [
+      "构建跨境电商 AI 分析工作台，支持通过自然语言发起订单与经营分析",
+      "接入 Olist 真实公开数据，覆盖订单、商品、客户、支付、评价和地理位置",
+      "支持默认加载跨境电商 MySQL 数据源和业务知识库",
+      "提供周度销售、品类表现、区域履约和客户体验推荐分析",
+      "实现基于 DB-GPT ReAct Agent 的数据库查询与知识库检索链路",
+      "打通 GMV、订单量、客单价、复购和评价等指标口径",
+      "实现普通分析与 HTML 报告意图区分，控制不同任务的输出链路",
+      "完成会话自动命名、任务历史、SQL 结果查看和中文界面改造",
+    ],
+    techStack: [
+      "前端展示层：Next.js 13、React 18、TypeScript、Ant Design、Tailwind CSS，承担分析工作台和任务交互界面",
+      "数据可视化层：AntV G2、G6、S2、GPT-Vis，承担分析表格、图表和结果展示",
+      "后端接口层：DB-GPT WebServer、Python API，承担会话、模型、数据源和知识库接口",
+      "Agent / AI 能力层：DB-GPT ReAct Agent、DeepSeek API、OpenCode 模型接口，承担自然语言分析和工具调用",
+      "数据持久层：MySQL 8.0、Olist 公开数据集，存储系统元数据和跨境电商分析数据",
+      "知识检索层：Elasticsearch 8.7、DB-GPT Knowledge Space，承担业务口径文档索引与检索",
+      "测试与工程化：Python unittest、Node Test Runner、TypeScript，覆盖报告意图和前端核心逻辑",
+      "部署与基础设施：Docker Compose、Nginx、Cloudflare、Origin CA TLS，承担服务编排和公网 HTTPS 发布",
+    ],
+  },
   {
     slug: "teanary-service",
     title: "Teanary(自建独立站)",

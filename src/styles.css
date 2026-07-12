@@ -526,7 +526,7 @@ button:disabled {
   .page-shell,
   .detail-shell,
   .site-footer {
-    width: min(100% - 32px, 1224px);
+    width: min(calc(100% - 32px), 1224px);
   }
 
   .page-shell {
@@ -542,8 +542,27 @@ button:disabled {
     grid-template-columns: 1fr;
   }
 
+  .category-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .category-tabs button {
+    padding: 0 10px;
+  }
+
   .project-card {
     min-height: 320px;
+  }
+
+  .project-heading {
+    flex-wrap: wrap;
+  }
+
+  .project-heading h2 {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .project-actions {
