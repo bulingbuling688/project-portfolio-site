@@ -44,7 +44,7 @@ describe("portfolio project browsing", () => {
     const crossBorderProjects = filterProjects(projects, "", "跨境电商");
     const relayProjects = filterProjects(projects, "", "中转站");
 
-    expect(crossBorderProjects).toHaveLength(13);
+    expect(crossBorderProjects).toHaveLength(14);
     expect(crossBorderProjects.every((project) => project.category === "跨境电商")).toBe(true);
     expect(relayProjects).toHaveLength(10);
     expect(relayProjects.every((project) => project.category === "中转站")).toBe(true);
@@ -52,7 +52,7 @@ describe("portfolio project browsing", () => {
 
   it("includes the published cross-border ecommerce AI data assistant", () => {
     expect(projectCategories).not.toContain("AI 数据应用");
-    expect(projects[0]).toEqual(
+    expect(projects).toContainEqual(
       expect.objectContaining({
         slug: "cross-border-ecommerce-ai-data-assistant",
         title: "跨境电商 AI 数据分析 Agent",
@@ -62,6 +62,24 @@ describe("portfolio project browsing", () => {
         projectUrl: "https://cross-border-ecommerce-ai-data-assistant.chatapi.fun",
         githubUrl:
           "https://github.com/bulingbuling688/cross-border-ecommerce-ai-data-assistant",
+      }),
+    );
+    expect(projects[0].features).toHaveLength(8);
+    expect(projects[0].techStack).toHaveLength(8);
+  });
+
+  it("includes the published cross-border ecommerce AI customer service agent", () => {
+    expect(projects[0]).toEqual(
+      expect.objectContaining({
+        slug: "cross-border-ecommerce-multi-agent-customer-service",
+        title: "跨境电商 AI 售后客服 Agent",
+        category: "跨境电商",
+        status: "published",
+        coverImage: "/covers/cross-border-ecommerce-multi-agent-customer-service-cover.png",
+        projectUrl:
+          "https://cross-border-ecommerce-multi-agent-customer-service.chatapi.fun",
+        githubUrl:
+          "https://github.com/bulingbuling688/cross-border-ecommerce-multi-agent-customer-service",
       }),
     );
     expect(projects[0].features).toHaveLength(8);
@@ -237,10 +255,10 @@ describe("portfolio project browsing", () => {
     const publishedProjects = getDisplayProjects(projects, false);
 
     expect(draftProjects).toHaveLength(18);
-    expect(publishedProjects).toHaveLength(5);
+    expect(publishedProjects).toHaveLength(6);
     expect(publishedProjects.every((project) => project.status === "published")).toBe(true);
     expect(PAGE_SIZE).toBe(9);
-    expect(getVisibleProjects(publishedProjects, 1)).toHaveLength(5);
+    expect(getVisibleProjects(publishedProjects, 1)).toHaveLength(6);
     expect(getTotalPages(publishedProjects)).toBe(1);
     expect(buildPageLabels(getTotalPages(publishedProjects))).toEqual(["第一页"]);
   });

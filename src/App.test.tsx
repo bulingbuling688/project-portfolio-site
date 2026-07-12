@@ -11,7 +11,10 @@ describe("App", () => {
   it("renders only published project cards", () => {
     render(<App />);
 
-    expect(screen.getAllByRole("article")).toHaveLength(5);
+    expect(screen.getAllByRole("article")).toHaveLength(6);
+    expect(
+      screen.getByRole("heading", { name: "跨境电商 AI 售后客服 Agent" }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "跨境电商 AI 数据分析 Agent" }),
     ).toBeInTheDocument();
@@ -38,7 +41,11 @@ describe("App", () => {
   it("renders real project covers without draft cover placeholders", () => {
     const { container } = render(<App />);
 
-    expect(container.querySelectorAll("img.project-cover")).toHaveLength(5);
+    expect(container.querySelectorAll("img.project-cover")).toHaveLength(6);
+    expect(screen.getByAltText("跨境电商 AI 售后客服 Agent封面")).toHaveAttribute(
+      "src",
+      "/covers/cross-border-ecommerce-multi-agent-customer-service-cover.png",
+    );
     expect(screen.getByAltText("跨境电商 AI 数据分析 Agent封面")).toHaveAttribute(
       "src",
       "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
@@ -171,6 +178,37 @@ describe("App", () => {
     expect(screen.getByAltText("跨境电商 AI 数据分析 Agent封面")).toHaveAttribute(
       "src",
       "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
+    );
+  });
+
+  it("renders the cross-border ecommerce AI customer service detail page", () => {
+    window.history.pushState(
+      {},
+      "",
+      "/projects/cross-border-ecommerce-multi-agent-customer-service",
+    );
+
+    render(<App />);
+
+    expect(
+      screen.getByRole("heading", { name: "跨境电商 AI 售后客服 Agent" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /上线网站/ })).toHaveAttribute(
+      "href",
+      "https://cross-border-ecommerce-multi-agent-customer-service.chatapi.fun",
+    );
+    expect(screen.getByRole("link", { name: /GitHub/ })).toHaveAttribute(
+      "href",
+      "https://github.com/bulingbuling688/cross-border-ecommerce-multi-agent-customer-service",
+    );
+    expect(
+      screen.getByText(
+        "由客服主管 Agent 自动识别问题类型，调度订单物流、政策知识、售后风控和回复审核专家协同解决复杂问题",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByAltText("跨境电商 AI 售后客服 Agent封面")).toHaveAttribute(
+      "src",
+      "/covers/cross-border-ecommerce-multi-agent-customer-service-cover.png",
     );
   });
 

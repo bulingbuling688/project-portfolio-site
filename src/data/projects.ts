@@ -25,6 +25,39 @@ export const SHOW_DRAFT_PROJECTS = false;
 
 const publishedProjects: Project[] = [
   {
+    slug: "cross-border-ecommerce-multi-agent-customer-service",
+    title: "跨境电商 AI 售后客服 Agent",
+    description:
+      "面向跨境电商售后、退款和清关问题处理的 AI 客服 Agent，可自动查询订单与物流、检索售后政策、识别赔付风险并生成处理方案。系统由客服主管统一调度订单物流、政策知识、售后风控和回复审核专家，每条答复均经过业务数据核验与证据校验，高风险问题自动升级人工，将咨询、分析、决策和回复整合为一套智能售后处理闭环。",
+    category: "跨境电商",
+    status: "published",
+    coverImage: "/covers/cross-border-ecommerce-multi-agent-customer-service-cover.png",
+    projectUrl:
+      "https://cross-border-ecommerce-multi-agent-customer-service.chatapi.fun",
+    githubUrl:
+      "https://github.com/bulingbuling688/cross-border-ecommerce-multi-agent-customer-service",
+    features: [
+      "自动处理跨境电商售后、退款和清关问题，将客户咨询、信息核验、方案制定和回复生成整合为完整处理流程",
+      "实时查询订单、物流、退款和售后记录，快速还原履约时间线，为每一次客服判断提供可靠业务依据",
+      "由客服主管 Agent 自动识别问题类型，调度订单物流、政策知识、售后风控和回复审核专家协同解决复杂问题",
+      "通过 RAG 检索清关、国际物流、退货退款和赔偿政策，让客服回复有明确规则和知识证据支撑",
+      "自动识别高额赔偿、异常退款和高风险客户请求，根据业务规则给出处理建议或升级人工审核",
+      "对最终回复进行事实、政策和风险校验，拦截无依据承诺、错误赔付方案及可能引发损失的客服答复",
+      "实时展示专家分工、工具调用、证据来源和处理结果，让整个售后决策过程可查看、可追踪、可复核",
+      "支持流式回复、连续会话、自动命名、异常续跑和页面恢复，保障复杂售后任务能够稳定、持续完成",
+    ],
+    techStack: [
+      "前端客服工作台：React 19、TypeScript、Vite、Tailwind CSS、shadcn/ui、Radix UI，负责多 Agent 协作界面、流式消息、会话管理、订单物流面板和响应式交互",
+      "后端业务接口层：FastAPI、Uvicorn、REST API、SSE，提供 Agent 调度、会话管理、订单查询、物流追踪、退款售后、知识检索和健康检查接口",
+      "多 Agent 协作层：AgentScope、DeepSeek、Supervisor Agent、专业 Agent、工具调用、上下文管理，完成任务识别、专家调度、协作约束、结果汇总和异常续跑",
+      "客服业务能力层：订单核验、物流时间线、清关追踪、退款处理、售后风控、人工升级和回复审核，覆盖跨境售后主要处理链路",
+      "数据持久层：Redis、SQLite，分别保存 Agent 会话与运行状态，以及模拟订单、物流、退款和售后业务数据",
+      "RAG 知识检索层：Qdrant、BAAI/bge-m3、RAG Middleware，负责政策文档切分、向量化、语义检索、证据引用和知识库管理",
+      "测试与工程化：Vitest、Testing Library、Python unittest、ESLint、TypeScript Build、GitHub Actions，覆盖前端交互、多 Agent 协作及核心业务流程",
+      "部署与基础设施：Docker Compose、GHCR、Nginx、Cloudflare HTTPS、VPS，完成固定提交镜像构建、容器编排、反向代理和公网部署",
+    ],
+  },
+  {
     slug: "cross-border-ecommerce-ai-data-assistant",
     title: "跨境电商 AI 数据分析 Agent",
     description:
