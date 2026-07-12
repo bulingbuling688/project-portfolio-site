@@ -1,4 +1,4 @@
-export const projectCategories = ["AI 数据应用", "跨境电商", "中转站"] as const;
+export const projectCategories = ["跨境电商", "中转站"] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
 
@@ -29,7 +29,7 @@ const publishedProjects: Project[] = [
     title: "跨境电商 AI 数据分析助理",
     description:
       "面向跨境电商运营和数据分析场景的智能经营分析工作台。项目接入 Olist 真实公开电商订单数据，覆盖订单、商品、客户、卖家、支付、评价和地理位置等业务对象，支持用户通过自然语言完成销售趋势、品类表现、区域履约和客户体验分析。系统打通了业务提问、默认数据源与知识库加载、SQL 分析、执行过程查看和结果追问链路，当前已完成前端业务化改造、中文本地化、AI 模型接入、容器化部署及公网 HTTPS 上线。",
-    category: "AI 数据应用",
+    category: "跨境电商",
     status: "published",
     coverImage: "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
     projectUrl: "https://cross-border-ecommerce-ai-data-assistant.chatapi.fun",

@@ -44,19 +44,19 @@ describe("portfolio project browsing", () => {
     const crossBorderProjects = filterProjects(projects, "", "跨境电商");
     const relayProjects = filterProjects(projects, "", "中转站");
 
-    expect(crossBorderProjects).toHaveLength(12);
+    expect(crossBorderProjects).toHaveLength(13);
     expect(crossBorderProjects.every((project) => project.category === "跨境电商")).toBe(true);
     expect(relayProjects).toHaveLength(10);
     expect(relayProjects.every((project) => project.category === "中转站")).toBe(true);
   });
 
   it("includes the published cross-border ecommerce AI data assistant", () => {
-    expect(projectCategories).toContain("AI 数据应用");
+    expect(projectCategories).not.toContain("AI 数据应用");
     expect(projects[0]).toEqual(
       expect.objectContaining({
         slug: "cross-border-ecommerce-ai-data-assistant",
         title: "跨境电商 AI 数据分析助理",
-        category: "AI 数据应用",
+        category: "跨境电商",
         status: "published",
         coverImage: "/covers/cross-border-ecommerce-ai-data-assistant-cover.png",
         projectUrl: "https://cross-border-ecommerce-ai-data-assistant.chatapi.fun",

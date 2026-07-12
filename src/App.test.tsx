@@ -90,12 +90,11 @@ describe("App", () => {
     expect(screen.getByText("第 1 / 1 页")).toBeInTheDocument();
   });
 
-  it("filters the AI data application category", () => {
+  it("includes the AI data assistant in the cross-border ecommerce category", () => {
     render(<App />);
 
-    fireEvent.click(screen.getByRole("tab", { name: "AI 数据应用" }));
+    fireEvent.click(screen.getByRole("tab", { name: "跨境电商" }));
 
-    expect(screen.getAllByRole("article")).toHaveLength(1);
     expect(
       screen.getByRole("heading", { name: "跨境电商 AI 数据分析助理" }),
     ).toBeInTheDocument();
