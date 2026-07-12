@@ -77,13 +77,13 @@ npm run build
 | Git 分支 | `main` |
 | 包管理器 | `npm@10.8.2` |
 | 安装命令 | `npm ci` |
-| 上线代码提交 | `f25368415a8da7310805375bf42951b8b05383bd` |
+| 上线代码提交 | `f3f732bd2ea20a8f69e3730e2eac06a4bb92cad3` |
 | 文档提交 | 本次 README 最终化提交，以 GitHub `main` 最新提交为准 |
 | VPS 项目目录 | `/opt/apps/project-portfolio-site` |
 | 源码目录 | `/opt/apps/project-portfolio-site` |
 | 版本目录 | `/opt/apps/project-portfolio-site/releases` |
-| 当前版本 | `/opt/apps/project-portfolio-site/releases/f25368415a8da7310805375bf42951b8b05383bd` |
-| 上一版本 | `/opt/apps/project-portfolio-site/releases/6c623ed6d6cb02ec711d0d21d548c56282317a69` |
+| 当前版本 | `/opt/apps/project-portfolio-site/releases/f3f732bd2ea20a8f69e3730e2eac06a4bb92cad3` |
+| 上一版本 | `/opt/apps/project-portfolio-site/releases/f25368415a8da7310805375bf42951b8b05383bd` |
 | 静态入口 | `/var/www/project-portfolio-site` |
 | 运行方式 | `Static Nginx` |
 | 构建命令 | `npm run build` |
@@ -120,7 +120,7 @@ readlink -f /var/www/project-portfolio-site
 
 ```bash
 root=/opt/apps/project-portfolio-site
-previous=$root/releases/6c623ed6d6cb02ec711d0d21d548c56282317a69
+previous=$root/releases/f25368415a8da7310805375bf42951b8b05383bd
 sudo ln -sfn "$previous" "$root/current.next"
 sudo mv -Tf "$root/current.next" "$root/current"
 sudo ln -sfn "$root/current/dist" /var/www/project-portfolio-site.next
